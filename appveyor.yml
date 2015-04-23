@@ -1,0 +1,6 @@
+version: 0.1.0.{build}
+nuget:
+  disable_publish_on_pr: true
+build_script:
+- build NSuggest.WPF\NSuggest.WPF.csproj /t:Build /v:m
+test: off
