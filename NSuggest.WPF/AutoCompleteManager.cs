@@ -27,7 +27,6 @@ namespace NSuggest.WPF
         private double _itemHeight;
         private double _downWidth;
         private double _downHeight;
-        private double _downTop;
         private Point _ptDown;
 
         private bool _popupOnTop = true;
@@ -66,10 +65,7 @@ namespace NSuggest.WPF
             }
         }
 
-        public bool AutoCompleting
-        {
-            get { return _popup != null && _popup.IsOpen; }
-        }
+        public bool AutoCompleting => _popup != null && _popup.IsOpen;
 
         public bool Asynchronous { get; set; }
 
@@ -154,9 +150,11 @@ namespace NSuggest.WPF
                 AllowsTransparency = true,
                 MinHeight = SystemParameters.HorizontalScrollBarHeight + PopupShadowDepth,
                 MinWidth = SystemParameters.VerticalScrollBarWidth + PopupShadowDepth,
-                VerticalOffset = SystemParameters.PrimaryScreenHeight + 100,
+                //VerticalOffset = SystemParameters.PrimaryScreenHeight + 100,
                 Child = _chrome,
-                IsOpen = true
+                IsOpen = true,
+                Placement = PlacementMode.Bottom,
+                PlacementTarget = _textBox
             };
 
             _itemHeight = tempItem.ActualHeight;
@@ -468,7 +466,6 @@ namespace NSuggest.WPF
         {
             _downWidth = _chrome.ActualWidth + PopupShadowDepth;
             _downHeight = _chrome.ActualHeight + PopupShadowDepth;
-            _downTop = _popup.VerticalOffset;
 
             var p = e.GetPosition(_resizeGrip);
             p = _resizeGrip.PointToScreen(p);
@@ -495,13 +492,13 @@ namespace NSuggest.WPF
             {
                 _popup.Width = newWidth;
             }
+
             if (PopupOnTop)
             {
-                var bottom = _downTop + _downHeight;
-                var newTop = _downTop + dy;
+                var bottom = _downHeight;
+                var newTop = dy;
                 if (Math.Abs(newTop - _popup.VerticalOffset) > Epsilon && newTop < bottom - _popup.MinHeight)
                 {
-                    _popup.VerticalOffset = newTop;
                     _popup.Height = bottom - newTop;
                 }
             }
@@ -644,7 +641,6 @@ namespace NSuggest.WPF
             p = _textBox.PointToScreen(p);
             var tbTop = p.Y;
 
-            _popup.HorizontalOffset = p.X;
             var popupTop = tbBottom;
 
             if (!_manualResized)
@@ -675,14 +671,12 @@ namespace NSuggest.WPF
                     popupTop = tbTop - popupHeight + 4;
                     if (popupTop < 0)
                     {
-                        popupTop = 0;
                         popupHeight = tbTop + 4;
                     }
                 }
             }
             PopupOnTop = popupOnTop;
             _popup.Height = popupHeight;
-            _popup.VerticalOffset = popupTop;
 
             _popup.IsOpen = true;
         }

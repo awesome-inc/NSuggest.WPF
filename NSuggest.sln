@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSuggest.Query", "Query\NSu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{964D5025-86DC-4046-8A2B-0A8AAF66D62F}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		before.NSuggest.sln.targets = before.NSuggest.sln.targets
+		build.bat = build.bat
+		empty.targets = empty.targets
 		solution.targets = solution.targets
 		SolutionInfo.cs = SolutionInfo.cs
 	EndProjectSection

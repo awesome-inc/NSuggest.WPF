@@ -76,10 +76,7 @@ namespace NSuggest
         /// property may be used to indicate the percentage of data arrived.
         /// </summary>
         /// <value>The state.</value>
-        public int State
-        {
-            get { return Math.Max(0, 100 - (100*CacheMisses)/Math.Max(1, CacheHits)); }
-        }
+        public int State => Math.Max(0, 100 - (100*CacheMisses)/Math.Max(1, CacheHits));
 
         /// <summary>
         /// Gets or sets the keep free percentage value, i.e. a value between 0 and 0.5
@@ -106,10 +103,7 @@ namespace NSuggest
         /// employed to minimize tail removing frequency.
         /// </summary>
         /// <value>The desired count.</value>
-        public int DesiredCount
-        {
-            get { return (int) ((1.0f - KeepFree)*(Capacity - 1)); }
-        }
+        public int DesiredCount => (int) ((1.0f - KeepFree)*(Capacity - 1));
 
         /// <summary>
         /// Occurs when a node is to be removed.

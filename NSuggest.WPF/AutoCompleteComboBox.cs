@@ -12,7 +12,7 @@ namespace NSuggest.WPF
         private int _oldSelLength;
         private string _oldText;
 
-        public AutoCompleteManager AutoCompleteManager { get { return _acm; } }
+        public AutoCompleteManager AutoCompleteManager => _acm;
 
         public AutoCompleteComboBox()
         {

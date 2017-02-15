@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,25 +45,13 @@ namespace NSuggest
                 SplitChar = splitChar;
             }
 
-            public bool HasChildren
-            {
-                get { return (LowChild != null || MiddleChild != null || HighChild != null); }
-            }
+            public bool HasChildren => (LowChild != null || MiddleChild != null || HighChild != null);
 
-            public bool IsLowChild
-            {
-                get { return (Parent != null && ReferenceEquals(Parent.LowChild, this)); }
-            }
+            public bool IsLowChild => (Parent != null && ReferenceEquals(Parent.LowChild, this));
 
-            public bool IsHighChild
-            {
-                get { return (Parent != null && ReferenceEquals(Parent.HighChild, this)); }
-            }
+            public bool IsHighChild => (Parent != null && ReferenceEquals(Parent.HighChild, this));
 
-            private bool IsMiddleChild
-            {
-                get { return (Parent != null && ReferenceEquals(Parent.MiddleChild, this)); }
-            }
+            private bool IsMiddleChild => (Parent != null && ReferenceEquals(Parent.MiddleChild, this));
 
             public override string ToString()
             {

@@ -19,10 +19,7 @@ namespace NSuggest
             set { _cache.Capacity = value; }
         }
 
-        public int Count
-        {
-            get { return _cache.Count; }
-        }
+        public int Count => _cache.Count;
 
         public bool Push(TKey key)
         {
