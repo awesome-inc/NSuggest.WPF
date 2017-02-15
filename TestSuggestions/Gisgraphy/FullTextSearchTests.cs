@@ -5,9 +5,9 @@ using NUnit.Framework;
 namespace TestSuggestions.Gisgraphy
 {
     [TestFixture]
-    class FullTextSearchTests
+    internal class FullTextSearchTests
     {
-        readonly IProvideResponse<FullTextSearch.Response> _service = new FullTextSearch();
+        private readonly IProvideResponse<FullTextSearch.Response> _service = new FullTextSearch();
 
         [Test, Explicit, Category("Integration")]
         public void ShouldReturnBasicResults()

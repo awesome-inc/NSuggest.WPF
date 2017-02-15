@@ -138,7 +138,7 @@ namespace NSuggest
         public bool TryAdd(String key, TValue value)
         {
             if (String.IsNullOrEmpty(key))
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
 
             // create root node if necessary.		
             if (_root == null)
@@ -200,7 +200,7 @@ namespace NSuggest
         public void AddRange(IEnumerable<Tuple<string, TValue>> items, bool sort = true)
         {
             if (items == null)
-                throw new ArgumentNullException("items");
+                throw new ArgumentNullException(nameof(items));
             var itms = items.ToArray(); // avoid possible multiple enumeration!
             var keys = itms.Select(item => item.Item1).ToArray();
             if (keys.Length <= 0) return;
@@ -257,7 +257,7 @@ namespace NSuggest
         public IEnumerable<Tuple<string, TValue>> ItemsLike(string pattern, char wildChar = '*')
         {
             if (String.IsNullOrEmpty(pattern))
-                throw new ArgumentNullException("pattern");
+                throw new ArgumentNullException(nameof(pattern));
             var matches = new List<Tuple<string, TValue>>();
             PartialMatchSearch(_root, pattern, 0, wildChar, matches);
             return matches;
@@ -266,9 +266,9 @@ namespace NSuggest
         public IEnumerable<Tuple<string, TValue>> ItemsNearBy(string key, int distance)
         {
             if (String.IsNullOrEmpty(key))
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             if (distance < 0)
-                throw new ArgumentOutOfRangeException("distance");
+                throw new ArgumentOutOfRangeException(nameof(distance));
             var matches = new List<Tuple<string, TValue>>();
             NearNeighborsSearch(_root, key, 0, distance, matches);
             return matches;
@@ -306,7 +306,7 @@ namespace NSuggest
 
         private void AddBalanced(string[] keys, IList<TValue> values, int left, int right)
         {
-            if (keys == null) throw new ArgumentNullException("keys");
+            if (keys == null) throw new ArgumentNullException(nameof(keys));
             if (left >= right) return;
             var pivot = (left + right) / 2;
             TryAdd(keys[pivot], values[pivot]);
@@ -322,7 +322,7 @@ namespace NSuggest
         private Node Find(String prefix)
         {
             if (String.IsNullOrEmpty(prefix))
-                throw new ArgumentNullException("prefix");
+                throw new ArgumentNullException(nameof(prefix));
 
             var node = _root;
             var index = 0;

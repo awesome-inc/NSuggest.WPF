@@ -8,9 +8,9 @@ namespace TestSuggestions.Gisgraphy
     /// Summary description for UnitTest1
     /// </summary>
     [TestFixture]
-    class GeocodingTest
+    internal class GeocodingTest
     {
-        readonly IProvideResponse<Geocoding.Response> _service = new Geocoding();
+        private readonly IProvideResponse<Geocoding.Response> _service = new Geocoding();
 
         [Test, Explicit, Category("Integration")]
         public void ShouldReturnBasicResults()

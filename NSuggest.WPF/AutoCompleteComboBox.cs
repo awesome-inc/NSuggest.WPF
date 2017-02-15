@@ -6,11 +6,11 @@ namespace NSuggest.WPF
 {
     public class AutoCompleteComboBox : ComboBox
     {
-        readonly AutoCompleteManager _acm = new AutoCompleteManager();
-        TextBox _textBox;
-        int _oldSelStart;
-        int _oldSelLength;
-        string _oldText;
+        private readonly AutoCompleteManager _acm = new AutoCompleteManager();
+        private TextBox _textBox;
+        private int _oldSelStart;
+        private int _oldSelLength;
+        private string _oldText;
 
         public AutoCompleteManager AutoCompleteManager { get { return _acm; } }
 
@@ -21,7 +21,7 @@ namespace NSuggest.WPF
             GotMouseCapture += AutoCompleteComboBoxGotMouseCapture;
         }
 
-        void AutoCompleteComboBoxGotMouseCapture(object sender, MouseEventArgs e)
+        private void AutoCompleteComboBoxGotMouseCapture(object sender, MouseEventArgs e)
         {
             _oldSelStart = _textBox.SelectionStart;
             _oldSelLength = _textBox.SelectionLength;

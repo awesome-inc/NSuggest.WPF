@@ -13,11 +13,11 @@ namespace NSuggest.Query
             ICreateResponseStream createResponseStream, IReadResponse<TResponse> readResponse)
         {
             if (String.IsNullOrEmpty(urlTemplate))
-                throw new ArgumentNullException("urlTemplate");
+                throw new ArgumentNullException(nameof(urlTemplate));
             if (createResponseStream == null)
-                throw new ArgumentNullException("createResponseStream");
+                throw new ArgumentNullException(nameof(createResponseStream));
             if (readResponse == null)
-                throw new ArgumentNullException("readResponse");
+                throw new ArgumentNullException(nameof(readResponse));
 
             UrlTemplate = urlTemplate;
             StreamBuilder = createResponseStream;

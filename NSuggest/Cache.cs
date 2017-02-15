@@ -95,7 +95,7 @@ namespace NSuggest
             set
             {
                 if ((value < 0f) || (value > 0.5f))
-                    throw new ArgumentOutOfRangeException("value",
+                    throw new ArgumentOutOfRangeException(nameof(value),
                                                           "Invalid keep free fraction specified (negative or greater than 0.5).");
                 _keepFree = value;
             }
@@ -125,7 +125,7 @@ namespace NSuggest
             set
             {
                 if (value <= 0)
-                    throw new ArgumentOutOfRangeException("value", "Invalid cache size specified (zero or negative).");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Invalid cache size specified (zero or negative).");
                 _capacity = value;
             }
         }
@@ -523,7 +523,7 @@ namespace NSuggest
 
             if (node == null)
             {
-                throw new ArgumentNullException("node", "Internal Cache Error.");
+                throw new ArgumentNullException(nameof(node), "Internal Cache Error.");
             }
 
             // first entry

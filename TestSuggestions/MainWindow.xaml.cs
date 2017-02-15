@@ -7,8 +7,8 @@ namespace TestSuggestions
 {
     public partial class MainWindow
     {
-        readonly AutoCompleteManager _acmRegistryPath;
-        readonly AutoCompleteManager _acmGeocoding;
+        private readonly AutoCompleteManager _acmRegistryPath;
+        private readonly AutoCompleteManager _acmGeocoding;
 
         public MainWindow()
         {
@@ -37,13 +37,13 @@ namespace TestSuggestions
             actbFileSysPath.AutoCompleteManager.DataProvider = new FileSystemSuggestions();
         }
 
-        void ChkIncludeFilesClick(object sender, RoutedEventArgs e)
+        private void ChkIncludeFilesClick(object sender, RoutedEventArgs e)
         {
             var fileSysDataProvider = (FileSystemSuggestions)actbFileSysPath.AutoCompleteManager.DataProvider;
             fileSysDataProvider.IncludeFiles = chkIncludeFiles.IsChecked ?? false;
         }
 
-        void ChkAutoAppendClick(object sender, RoutedEventArgs e)
+        private void ChkAutoAppendClick(object sender, RoutedEventArgs e)
         {
             var autoAppend = chkAutoAppend.IsChecked ?? false;
             _acmRegistryPath.AutoAppend =

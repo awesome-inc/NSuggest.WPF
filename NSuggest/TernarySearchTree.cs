@@ -120,7 +120,7 @@ namespace NSuggest
         public bool TryAdd(String key)
         {
             if (String.IsNullOrEmpty(key))
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
 
             // create root node if necessary.		
             if (_root == null)
@@ -181,7 +181,7 @@ namespace NSuggest
         public void AddRange(IEnumerable<string> keys, bool needSorting = true)
         {
             if (keys == null)
-                throw new ArgumentNullException("keys");
+                throw new ArgumentNullException(nameof(keys));
             var kys = keys.ToArray();
             if (kys.Length <= 0) return;
             if (needSorting)
@@ -270,7 +270,7 @@ namespace NSuggest
         public IEnumerable<string> KeysLike(string pattern, char wildChar = '*')
         {
             if (String.IsNullOrEmpty(pattern))
-                throw new ArgumentNullException("pattern");
+                throw new ArgumentNullException(nameof(pattern));
 
             var matches = new List<string>();
             PartialMatch(_root, pattern, 0, wildChar, matches);
@@ -288,9 +288,9 @@ namespace NSuggest
         public IEnumerable<string> KeysNearBy(string pattern, int distance)
         {
             if (String.IsNullOrEmpty(pattern))
-                throw new ArgumentNullException("pattern");
+                throw new ArgumentNullException(nameof(pattern));
             if (distance < 0)
-                throw new ArgumentOutOfRangeException("distance");
+                throw new ArgumentOutOfRangeException(nameof(distance));
 
             var matches = new List<string>();
             NearNeighbors(_root, pattern, 0, distance, matches);
@@ -303,7 +303,7 @@ namespace NSuggest
 
         private void AddBalanced(IList<string> keys, int left, int right)
         {
-            if (keys == null) throw new ArgumentNullException("keys");
+            if (keys == null) throw new ArgumentNullException(nameof(keys));
             if (left >= right)
                 return;
             var pivot = (left + right)/2;
@@ -319,7 +319,7 @@ namespace NSuggest
         /// <exception cref="ArgumentNullException"><paramref name="prefix"/> is null or empty.</exception>
         private Node Find(String prefix)
         {
-            if (String.IsNullOrEmpty(prefix)) throw new ArgumentNullException("prefix");
+            if (String.IsNullOrEmpty(prefix)) throw new ArgumentNullException(nameof(prefix));
             var node = _root;
             var index = 0;
             while (index < prefix.Length && node != null)

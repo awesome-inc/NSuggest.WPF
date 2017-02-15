@@ -10,7 +10,7 @@ namespace NSuggest
 
         public StaticDataSuggestions(IEnumerable<string> source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             _source = source.ToArray();
         }
 

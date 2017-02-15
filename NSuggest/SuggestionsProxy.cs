@@ -14,7 +14,7 @@ namespace NSuggest
         public SuggestionsProxy(IProvideSuggestions suggestionProvider)
         {
             if (suggestionProvider == null)
-                throw new ArgumentNullException("suggestionProvider");
+                throw new ArgumentNullException(nameof(suggestionProvider));
             _suggestionProvider = suggestionProvider;
 
             MaxFailures = 5;
@@ -44,7 +44,7 @@ namespace NSuggest
         public IEnumerable<string> For(string prefix)
         {
             if (prefix == null)
-                throw new ArgumentNullException("prefix");
+                throw new ArgumentNullException(nameof(prefix));
 
             if (prefix.Length < MinTermLength)
                 return null;
@@ -85,7 +85,7 @@ namespace NSuggest
 
         private void PushCache(IList<string> keys)
         {
-            if (keys == null) throw new ArgumentNullException("keys");
+            if (keys == null) throw new ArgumentNullException(nameof(keys));
             _suffixTree.AddRange(keys);
             foreach (var key in keys)
                 _cache.Add(key, 1);

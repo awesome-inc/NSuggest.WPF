@@ -17,35 +17,35 @@ namespace NSuggest.WPF
     public class AutoCompleteManager
     {
         // ReSharper disable InconsistentNaming
-        const int WM_NCLBUTTONDOWN = 0x00A1;
-        const int WM_NCRBUTTONDOWN = 0x00A4;
+        private const int WM_NCLBUTTONDOWN = 0x00A1;
+        private const int WM_NCRBUTTONDOWN = 0x00A4;
         // ReSharper restore InconsistentNaming
-        const int PopupShadowDepth = 5;
+        private const int PopupShadowDepth = 5;
 
         #region Internal States
 
-        double _itemHeight;
-        double _downWidth;
-        double _downHeight;
-        double _downTop;
-        Point _ptDown;
+        private double _itemHeight;
+        private double _downWidth;
+        private double _downHeight;
+        private double _downTop;
+        private Point _ptDown;
 
-        bool _popupOnTop = true;
-        bool _manualResized;
-        string _textBeforeChangedByCode;
-        bool _textChangedByCode;
+        private bool _popupOnTop = true;
+        private bool _manualResized;
+        private string _textBeforeChangedByCode;
+        private bool _textChangedByCode;
 
-        TextBox _textBox;
-        Popup _popup;
-        SystemDropShadowChrome _chrome;
-        ListBox _listBox;
-        ScrollBar _scrollBar;
-        ResizeGrip _resizeGrip;
-        ScrollViewer _scrollViewer;
-        Thread _asyncThread;
+        private TextBox _textBox;
+        private Popup _popup;
+        private SystemDropShadowChrome _chrome;
+        private ListBox _listBox;
+        private ScrollBar _scrollBar;
+        private ResizeGrip _resizeGrip;
+        private ScrollViewer _scrollViewer;
+        private Thread _asyncThread;
 
-        bool _disabled;
-        bool _supressAutoAppend;
+        private bool _disabled;
+        private bool _supressAutoAppend;
 
         #endregion
 
@@ -95,7 +95,7 @@ namespace NSuggest.WPF
         public void AttachTextBox(TextBox textBox)
         {
             if (textBox == null)
-                throw new ArgumentNullException("textBox");
+                throw new ArgumentNullException(nameof(textBox));
 
             if (Application.Current.Resources.FindName("AcTb_ListBoxStyle") == null)
             {
@@ -124,27 +124,27 @@ namespace NSuggest.WPF
             // ReSharper restore PossibleNullReferenceException
         }
 
-        void OwnerWindowLocationChanged(object sender, EventArgs e)
+        private void OwnerWindowLocationChanged(object sender, EventArgs e)
         {
             _popup.IsOpen = false;
         }
 
-        void OwnerWindowLoaded(object sender, RoutedEventArgs e)
+        private void OwnerWindowLoaded(object sender, RoutedEventArgs e)
         {
             Initialize();
         }
 
-        void Initialize()
+        private void Initialize()
         {
             _listBox = new ListBox();
             var tempItem = new ListBoxItem { Content = "TEMP_ITEM_FOR_MEASUREMENT" };
             _listBox.Items.Add(tempItem);
             _listBox.Focusable = false;
-            _listBox.Style = (Style) Application.Current.Resources["AcTb_ListBoxStyle"];
+            _listBox.Style = (Style)Application.Current.Resources["AcTb_ListBoxStyle"];
 
             _chrome = new SystemDropShadowChrome
             {
-                Margin = new Thickness(0, 0, PopupShadowDepth, PopupShadowDepth), 
+                Margin = new Thickness(0, 0, PopupShadowDepth, PopupShadowDepth),
                 Child = _listBox
             };
 
@@ -168,7 +168,7 @@ namespace NSuggest.WPF
             SetupEventHandlers();
         }
 
-        void GetInnerElementReferences()
+        private void GetInnerElementReferences()
         {
             var border = (Border)_listBox.Template.FindName("Border", _listBox);
             _scrollViewer = (ScrollViewer)border.Child;
@@ -176,7 +176,7 @@ namespace NSuggest.WPF
             _scrollBar = _scrollViewer.Template.FindName("PART_VerticalScrollBar", _scrollViewer) as ScrollBar;
         }
 
-        void UpdateGripVisual()
+        private void UpdateGripVisual()
         {
             var rectSize = SystemParameters.VerticalScrollBarWidth;
             var triangle = (Path)_resizeGrip.Template.FindName("RG_TRIANGLE", _resizeGrip);
@@ -196,7 +196,7 @@ namespace NSuggest.WPF
             triangle.Data = pg;
         }
 
-        void SetupEventHandlers()
+        private void SetupEventHandlers()
         {
             var ownerWindow = Window.GetWindow(_textBox);
             // ReSharper disable InvocationIsSkipped
@@ -235,7 +235,7 @@ namespace NSuggest.WPF
 
         #region TextBox Event Handling
 
-        void TextBoxTextChanged(object sender, TextChangedEventArgs e)
+        private void TextBoxTextChanged(object sender, TextChangedEventArgs e)
         {
             if (_textChangedByCode || Disabled || DataProvider == null)
                 return;
@@ -252,10 +252,10 @@ namespace NSuggest.WPF
                 if (_asyncThread != null && _asyncThread.IsAlive)
                     _asyncThread.Abort();
 
-                _asyncThread = new Thread(() => 
+                _asyncThread = new Thread(() =>
                 {
                     var dispatcher = _textBox.Dispatcher; // Application.Current.Dispatcher;
-                    var currentText = (String)dispatcher.Invoke((Func<TextBox,string>)(txtBox => txtBox.Text), _textBox);
+                    var currentText = (String)dispatcher.Invoke((Func<TextBox, string>)(txtBox => txtBox.Text), _textBox);
                     if (text != currentText)
                         return;
                     var items = GetSuggestions(text);
@@ -283,7 +283,7 @@ namespace NSuggest.WPF
             }
         }
 
-        void TextBoxPreviewKeyDown(object sender, KeyEventArgs e)
+        private void TextBoxPreviewKeyDown(object sender, KeyEventArgs e)
         {
             _supressAutoAppend = e.Key == Key.Delete || e.Key == Key.Back;
             if (!_popup.IsOpen)
@@ -318,13 +318,13 @@ namespace NSuggest.WPF
                         default:
                             if (index == (int)_scrollBar.Value)
                             {
-                                index -= (int) _scrollBar.ViewportSize;
+                                index -= (int)_scrollBar.ViewportSize;
                                 if (index < 0)
                                     index = 0;
                             }
                             else
                             {
-                                index = (int) _scrollBar.Value;
+                                index = (int)_scrollBar.Value;
                             }
                             break;
                     }
@@ -348,7 +348,7 @@ namespace NSuggest.WPF
                     }
                     else
                     {
-                        index = (int) (_scrollBar.Value + _scrollBar.ViewportSize - 1);
+                        index = (int)(_scrollBar.Value + _scrollBar.ViewportSize - 1);
                     }
                     break;
                 case Key.Up:
@@ -385,7 +385,7 @@ namespace NSuggest.WPF
             }
         }
 
-        void TextBoxLostFocus(object sender, RoutedEventArgs e)
+        private void TextBoxLostFocus(object sender, RoutedEventArgs e)
         {
             _popup.IsOpen = false;
         }
@@ -394,7 +394,7 @@ namespace NSuggest.WPF
 
         #region ListBox event handling
 
-        void ListBoxPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ListBoxPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var pos = e.GetPosition(_listBox);
             var hitTestResult = VisualTreeHelper.HitTest(_listBox, pos);
@@ -414,7 +414,7 @@ namespace NSuggest.WPF
             }
         }
 
-        void ListBoxPreviewMouseMove(object sender, MouseEventArgs e)
+        private void ListBoxPreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (Mouse.Captured != null)
             {
@@ -433,14 +433,14 @@ namespace NSuggest.WPF
                 {
                     var item = (d as ListBoxItem);
                     item.IsSelected = true;
-//                    _listBox.ScrollIntoView(item);
+                    //                    _listBox.ScrollIntoView(item);
                     break;
                 }
                 d = VisualTreeHelper.GetParent(d);
             }
         }
 
-        void ListBoxMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void ListBoxMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             ListBoxItem item = null;
             var d = e.OriginalSource as DependencyObject;
@@ -464,7 +464,7 @@ namespace NSuggest.WPF
 
         #region ResizeGrip event handling
 
-        void ResizeGripPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ResizeGripPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _downWidth = _chrome.ActualWidth + PopupShadowDepth;
             _downHeight = _chrome.ActualHeight + PopupShadowDepth;
@@ -478,7 +478,8 @@ namespace NSuggest.WPF
         }
 
         private const double Epsilon = 0.5; // half a pixel
-        void ResizeGripPreviewMouseMove(object sender, MouseEventArgs e)
+
+        private void ResizeGripPreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton != MouseButtonState.Pressed)
             {
@@ -514,7 +515,7 @@ namespace NSuggest.WPF
             }
         }
 
-        void ResizeGripPreviewMouseUp(object sender, MouseButtonEventArgs e)
+        private void ResizeGripPreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             _resizeGrip.ReleaseMouseCapture();
             if (Math.Abs(_popup.Width - _downWidth) > Epsilon || Math.Abs(_popup.Height - _downHeight) > Epsilon)
@@ -527,20 +528,20 @@ namespace NSuggest.WPF
 
         #region Window event handling
 
-        void OwnerWindowDeactivated(object sender, EventArgs e)
+        private void OwnerWindowDeactivated(object sender, EventArgs e)
         {
             _popup.IsOpen = false;
         }
 
-        void OwnerWindowPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void OwnerWindowPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!Equals(e.Source, _textBox))
                 _popup.IsOpen = false;
         }
 
-// ReSharper disable RedundantAssignment
-        IntPtr HookHandler(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-// ReSharper restore RedundantAssignment
+        // ReSharper disable RedundantAssignment
+        private IntPtr HookHandler(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        // ReSharper restore RedundantAssignment
         {
             handled = false;
 
@@ -558,10 +559,10 @@ namespace NSuggest.WPF
 
         #region AutoCompleteTextBox States and Behaviours
 
-        void PopulatePopupList(IEnumerable<string> items)
+        private void PopulatePopupList(IEnumerable<string> items)
         {
             var text = _textBox.Text;
-            
+
             _listBox.ItemsSource = items;
             if (_listBox.Items.Count == 0)
             {
@@ -581,16 +582,16 @@ namespace NSuggest.WPF
                 ShowPopup();
 
                 //
-                if (AutoAppend && !_supressAutoAppend && 
-                     _textBox.SelectionLength == 0 && 
+                if (AutoAppend && !_supressAutoAppend &&
+                     _textBox.SelectionLength == 0 &&
                      _textBox.SelectionStart == _textBox.Text.Length)
                 {
                     _textChangedByCode = true;
                     try
                     {
                         var appendProvider = DataProvider as ISuggestSuffix;
-                        var appendText = appendProvider != null 
-                            ? appendProvider.For(text, firstSuggestion) 
+                        var appendText = appendProvider != null
+                            ? appendProvider.For(text, firstSuggestion)
                             : firstSuggestion.Substring(_textBox.Text.Length);
 
                         if (!string.IsNullOrEmpty(appendText))
@@ -604,7 +605,7 @@ namespace NSuggest.WPF
             }
         }
 
-        bool PopupOnTop
+        private bool PopupOnTop
         {
             get { return _popupOnTop; }
             set
@@ -631,7 +632,7 @@ namespace NSuggest.WPF
             }
         }
 
-        void ShowPopup()
+        private void ShowPopup()
         {
             var popupOnTop = false;
 
@@ -659,7 +660,7 @@ namespace NSuggest.WPF
             else
             {
                 var visibleCount = Math.Min(16, _listBox.Items.Count + 1);
-                popupHeight = visibleCount*_itemHeight + PopupShadowDepth;
+                popupHeight = visibleCount * _itemHeight + PopupShadowDepth;
             }
             var screenHeight = SystemParameters.PrimaryScreenHeight;
             if (popupTop + popupHeight > screenHeight)
@@ -686,7 +687,7 @@ namespace NSuggest.WPF
             _popup.IsOpen = true;
         }
 
-        void UpdateText(string text, bool selectAll)
+        private void UpdateText(string text, bool selectAll)
         {
             _textChangedByCode = true;
             _textBox.Text = text;

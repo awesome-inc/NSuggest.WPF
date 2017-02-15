@@ -9,9 +9,9 @@ namespace TestSuggestions.Gisgraphy
     ///to contain all FindNearByLocationTest Unit Tests
     ///</summary>
     [TestFixture]
-    class FindNearByLocationTests
+    internal class FindNearByLocationTests
     {
-        readonly IProvideResponse<FindNearByLocation.Response> _service = new FindNearByLocation();
+        private readonly IProvideResponse<FindNearByLocation.Response> _service = new FindNearByLocation();
 
         [Test, Explicit, Category("Integration")]
         public void ShouldReturnNearByLocations()

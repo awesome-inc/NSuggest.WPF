@@ -14,7 +14,7 @@ namespace NSuggest
         public KeyedValuesProxy(IHaveKeyedValues<TValue> keyedValuesProvider)
         {
             if (keyedValuesProvider == null)
-                throw new ArgumentNullException("keyedValuesProvider");
+                throw new ArgumentNullException(nameof(keyedValuesProvider));
             _keyedValuesProvider = keyedValuesProvider;
 
             MaxFailures = 5;
@@ -44,7 +44,7 @@ namespace NSuggest
         public IEnumerable<string> For(string prefix)
         {
             if (prefix == null)
-                throw new ArgumentNullException("prefix");
+                throw new ArgumentNullException(nameof(prefix));
 
             if (prefix.Length < MinTermLength)
                 return null;
@@ -82,7 +82,7 @@ namespace NSuggest
 
         private void PushCache(IList<Tuple<string,TValue>> values)
         {
-            if (values == null) throw new ArgumentNullException("values");
+            if (values == null) throw new ArgumentNullException(nameof(values));
             _tree.AddRange(values);
             foreach (var value in values)
                 _cache.Add(value.Item1, value.Item2);
