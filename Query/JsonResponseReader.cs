@@ -7,9 +7,7 @@ namespace NSuggest.Query
         : IReadResponse<TResponse> 
         where TResponse : IResponse
     {
-// ReSharper disable StaticFieldInGenericType
-        private static readonly DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(TResponse));
-// ReSharper restore StaticFieldInGenericType
+        internal static readonly DataContractJsonSerializer Serializer = new DataContractJsonSerializer(typeof(TResponse));
 
         public TResponse From(Stream stream)
         {

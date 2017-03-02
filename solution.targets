@@ -66,11 +66,10 @@
     </PropertyGroup>
     -->
 
-  <!--## Specifying your repository token for coveralls.io
+  <!--## Specifying your repository token for coveralls.io -->
     <PropertyGroup>
-        <CoverAllsToken>[your repo token]</CoverAllsToken>
+        <CoverAllsToken>glmjDLgnrvUTgPa3Ot1P8TbaBjm4PwX50</CoverAllsToken>
     </PropertyGroup>
-                -->
 
   <!-- ## Uncomment to override the default nuget server to push packages to in the 'Deploy' target
     <PropertyGroup>
