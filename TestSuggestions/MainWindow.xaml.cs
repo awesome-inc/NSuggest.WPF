@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using NSuggest;
+using NSuggest.ElasticSearch;
 using NSuggest.WPF;
-using TestSuggestions.ElasticSearch;
 using TestSuggestions.Gisgraphy;
 
 namespace TestSuggestions

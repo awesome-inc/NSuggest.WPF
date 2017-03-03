@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Json;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NEdifis.Attributes;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace TestSuggestions.ElasticSearch
+namespace NSuggest.ElasticSearch
 {
     [TestFixtureFor(typeof(RestClient))]
     // ReSharper disable once InconsistentNaming

@@ -77,6 +77,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NSuggest.ElasticSearch\NSuggest.ElasticSearch.csproj">
+      <Project>{d4dcc047-342c-49b3-8d08-fab7ad639db1}</Project>
+      <Name>NSuggest.ElasticSearch</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NSuggest\NSuggest.csproj">
       <Project>{B47078B3-A34C-4E6B-9E41-96FD07DC4AB8}</Project>
       <Name>NSuggest</Name>

@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace TestSuggestions.ElasticSearch
+namespace NSuggest.ElasticSearch
 {
     public interface IHttpClient : IDisposable
     {

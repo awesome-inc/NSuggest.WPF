@@ -19,6 +19,9 @@
       <frameworkAssembly assemblyName="PresentationFramework.Aero" targetFramework="" />
       <frameworkAssembly assemblyName="System.Xaml" targetFramework="" />
     </frameworkAssemblies>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0" />
+    </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\NSuggest.*" target="lib\net45"/>

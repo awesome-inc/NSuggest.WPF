@@ -4,7 +4,7 @@ using NEdifis;
 using NEdifis.Attributes;
 using NUnit.Framework;
 
-namespace TestSuggestions.ElasticSearch
+namespace NSuggest.ElasticSearch
 {
     [TestFixtureFor(typeof(ElasticSearchSuggestions))]
     // ReSharper disable once InconsistentNaming

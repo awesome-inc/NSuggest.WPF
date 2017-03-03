@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using NEdifis.Attributes;
 
-namespace TestSuggestions.ElasticSearch
+namespace NSuggest.ElasticSearch
 {
     [ExcludeFromConventions("Trivial")]
     public static class RestExtensions

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using NSuggest;
 
-namespace TestSuggestions.ElasticSearch
+namespace NSuggest.ElasticSearch
 {
     public class ElasticSearchSuggestions : IProvideSuggestions
     {
