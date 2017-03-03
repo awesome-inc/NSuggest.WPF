@@ -13,6 +13,7 @@
     <releaseNotes>Revision: $Revision$</releaseNotes>
     <projectUrl>https://github.com/awesome-inc/NSuggest.WPF</projectUrl>
     <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Net.Http" targetFramework="" />
       <frameworkAssembly assemblyName="WindowsBase" targetFramework="" />
       <frameworkAssembly assemblyName="PresentationCore" targetFramework="" />
       <frameworkAssembly assemblyName="PresentationFramework" targetFramework="" />

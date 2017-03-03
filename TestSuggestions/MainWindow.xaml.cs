@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using NSuggest;
-using NSuggest.ElasticSearch;
+using NSuggest.Rest;
 using NSuggest.WPF;
 using TestSuggestions.Gisgraphy;
 

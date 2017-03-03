@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace NSuggest.ElasticSearch
+namespace NSuggest.Rest
 {
     internal class TestData
     {

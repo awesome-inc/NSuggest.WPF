@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace NSuggest.ElasticSearch
+namespace NSuggest.Rest
 {
     public class RestClient : IRestClient, IDisposable
     {

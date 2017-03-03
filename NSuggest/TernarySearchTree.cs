@@ -64,7 +64,7 @@ namespace NSuggest
                 else
                     c = 'R'; // must be root
 
-                return IsKey ? String.Format("{0} {1} {2}", c, SplitChar, Key) : String.Format("{0} {1}", c, SplitChar);
+                return IsKey ? $"{c} {SplitChar} {Key}" : $"{c} {SplitChar}";
             }
         }
 

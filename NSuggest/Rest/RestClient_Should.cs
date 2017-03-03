@@ -9,7 +9,7 @@ using NEdifis.Attributes;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace NSuggest.ElasticSearch
+namespace NSuggest.Rest
 {
     [TestFixtureFor(typeof(RestClient))]
     // ReSharper disable once InconsistentNaming

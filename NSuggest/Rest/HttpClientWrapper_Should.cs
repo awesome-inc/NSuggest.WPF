@@ -5,7 +5,7 @@ using FluentAssertions;
 using NEdifis.Attributes;
 using NUnit.Framework;
 
-namespace NSuggest.ElasticSearch
+namespace NSuggest.Rest
 {
     [TestFixtureFor(typeof(HttpClientWrapper))]
     // ReSharper disable once InconsistentNaming

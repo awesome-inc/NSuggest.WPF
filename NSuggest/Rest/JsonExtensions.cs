@@ -3,7 +3,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using NEdifis.Attributes;
 
-namespace NSuggest.ElasticSearch
+namespace NSuggest.Rest
 {
     [ExcludeFromConventions("Copy&Paste, cf: http://stackoverflow.com/a/24067483/2592915")]
     public static class JsonExtensions

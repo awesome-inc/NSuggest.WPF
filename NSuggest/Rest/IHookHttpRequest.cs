@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace NSuggest.ElasticSearch
+namespace NSuggest.Rest
 {
     public interface IHookHttpRequest
     {

@@ -4,9 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-// ReSharper disable CheckNamespace
 namespace NSuggest
-// ReSharper restore CheckNamespace
 {
     /// <summary>
     /// A generic thread-safe lru-cache.
@@ -575,10 +573,7 @@ namespace NSuggest
         public override string ToString()
         {
             //return base.ToString();
-            return String.Format("Cur/Max = {0}/{1}, Hit/Miss = {2}/{3} ({4}%)",
-                                 Count, Capacity,
-                                 CacheHits, CacheMisses,
-                                 State);
+            return $"Cur/Max = {Count}/{Capacity}, Hit/Miss = {CacheHits}/{CacheMisses} ({State}%)";
         }
     }
 }
