@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26020.0
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSuggest", "NSuggest\NSuggest.csproj", "{B47078B3-A34C-4E6B-9E41-96FD07DC4AB8}"
 EndProject
@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		solution.targets = solution.targets
 		SolutionInfo.cs = SolutionInfo.cs
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSuggest.ElasticSearch", "NSuggest.ElasticSearch\NSuggest.ElasticSearch.csproj", "{D4DCC047-342C-49B3-8D08-FAB7AD639DB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F72E1C17-8685-48AB-8FF5-88D8E0DAE78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F72E1C17-8685-48AB-8FF5-88D8E0DAE78E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F72E1C17-8685-48AB-8FF5-88D8E0DAE78E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4DCC047-342C-49B3-8D08-FAB7AD639DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4DCC047-342C-49B3-8D08-FAB7AD639DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4DCC047-342C-49B3-8D08-FAB7AD639DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4DCC047-342C-49B3-8D08-FAB7AD639DB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

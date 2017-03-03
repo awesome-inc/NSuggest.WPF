@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NSuggest.ElasticSearch</id>
+    <version>$Version$</version>
+    <title>NSuggest.ElasticSearch</title>
+		<authors>Awesome Incremented and Contributors</authors>
+		<owners>Awesome Incremented and Contributors</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Suggestions &amp; Autocompletion for ElasticSearch</description>
+    <summary>Suggestions &amp; Autocompletion for ElasticSearch</summary>
+    <copyright/>
+    <releaseNotes>Revision: $Revision$</releaseNotes>
+    <projectUrl>https://github.com/awesome-inc/NSuggest.WPF</projectUrl>
+    <frameworkAssemblies>
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="bin\Release\NSuggest.*" target="lib\net45"/>
+  </files>
+</package>

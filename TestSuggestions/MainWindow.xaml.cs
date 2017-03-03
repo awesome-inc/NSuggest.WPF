@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using NSuggest;
 using NSuggest.WPF;
+using TestSuggestions.ElasticSearch;
 using TestSuggestions.Gisgraphy;
 
 namespace TestSuggestions
@@ -9,11 +11,12 @@ namespace TestSuggestions
     {
         private readonly AutoCompleteManager _acmRegistryPath;
         private readonly AutoCompleteManager _acmGeocoding;
+        private readonly AutoCompleteManager _acmElasticSearch;
 
         public MainWindow()
         {
             InitializeComponent();
-            
+
             _acmRegistryPath = new AutoCompleteManager(txtRegistryPath)
             {
                 DataProvider = new RegistrySuggestions()
@@ -35,6 +38,21 @@ namespace TestSuggestions
             };
 
             actbFileSysPath.AutoCompleteManager.DataProvider = new FileSystemSuggestions();
+
+            // elasticsearch
+            _acmElasticSearch = new AutoCompleteManager(txtEsSearch)
+            {
+                //DataProvider = new SuggestionsProxy(new GisgraphySuggestions())
+                DataProvider = new SuggestionsProxy(new ElasticSearchSuggestions(
+                    new RestClient() { BaseAddress = new Uri("http://localhost:9200/movies/movie") },
+                    new[] { "producer", "director" }))
+                {
+                    BlackListSize = 3000,
+                    CacheSize = 3000,
+                    MaxFailures = 3
+                },
+                Asynchronous = true
+            };
         }
 
         private void ChkIncludeFilesClick(object sender, RoutedEventArgs e)
